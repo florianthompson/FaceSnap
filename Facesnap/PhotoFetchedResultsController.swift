@@ -31,6 +31,12 @@ class PhotoFetchedResultsController: NSFetchedResultsController, NSFetchedResult
         }
     }
     
+    func performFetch(withPredicate predicate: NSPredicate?) {
+        NSFetchedResultsController.deleteCacheWithName(nil)
+        fetchRequest.predicate = predicate
+        executeFetch()
+    }
+    
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
